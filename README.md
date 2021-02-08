@@ -1,52 +1,68 @@
-<p align="center"><img src="https://www.nibo.com.br/logo-nibo.png" width="150" /></p>
-<h1 align="center">Nibo DevOps Challenge - Level 1</h1>
+<p align="center"><img src="https://www.bancosemear.com.br/assets/application/img/logo_banco_semear.png" width="150" /></p>
+<h1 align="center">Banco Semear teste DevOps</h1>
 
 
-<p align="center">Quer saber o por que vale a pena trabalhar no Nibo? <a href="https://tech.nibo.com.br">tech.nibo.com.br</a></p>
 
-Olá!
+Eu criei um pipeline de integração continua no Azure DevOps para fazer o deploy em um serviço no fargate e em um 
+bucket S3 na AWS.
 
-Primeiramente, parabéns por ter avançado ao Desafio para DevOps do Nibo! 
+1 - Para fazer o teste foram criados 2 repositorios no GitHub:
+    1.1 - Repositorio da API - https://github.com/Emersonhs/bancoSemear.api
+            - esse repositorio tem uma aplicação .Net Core. essa aplicação tem uma rota de API "/bancosemear/healthcheck" 
+                que retora uma mensagem simples.
+    1.2 - Repositorio da pagina estatica - https://github.com/Emersonhs/bancosemear.staticpage
+            - Esse Repositorio tem um arquivo de uma pagina simples HTML.
 
-## Quem somos
-O Nibo nasceu em 2012 com uma missão muito clara: ajudar empresas a gerir suas finanças de forma simples e responsável. Ao longo dos anos, percebemos que a única forma de alcançar esse objetivo seria com a ajuda de uma figura bastante esquecida no imaginário brasileiro - **contador**.
+Repositorio que fiz o Fork do projeto de teste
+       - https://github.com/Emersonhs/DevOpsChallenge
+Projeto Azure DevOps: 
+       -  https://niboteste.visualstudio.com/DevOps
+       
+    Existem dois builds:
+      Build 1 - Nibo Web App - esse fa um build roda os testes automatizados e ativa uma release que vai fazer um Deploy em um ambiente de HML e se o teste de Healthcheck passar ele faz o Deploy em 
+                                ambiente de produção.
+                                URLs
+                                    URL Index
+                                        - HML - https://nibowebapp-hml.azurewebsites.net/
+                                        - PRD - https://nibowebapp.azurewebsites.net/
+                                    URL Healthcheck
+                                        - Healthcheck de HML - https://nibowebapp-hml.azurewebsites.net//TesteNibo/Healthcheck
+                                        - Healthcheck de PRD - https://nibowebapp.azurewebsites.net//TesteNibo/Healthcheck
+                                Recrusos Usados:
+                                    Azure DevOps:
+                                        - Build e Release
+                                    Azure Cloud
+                                        - Resouce Group chamado NiboWebApp
+                                        - Web App
+                                        - aplication insatis para monitoramento
+ 
+     Build 2  - Nibo Web App Docker - esse fa um build roda os testes automatizados, cria uma imagem docker e publica essa imagem em uma Registry no Azure.
+                                      Logo depois a Release e ativada fazendo o deploy da imagem do Registry no Web App configurado p rodar container em ambiente de HML.
+                                     Se o Healthcheck passar em HML o pipeline faz o deploy em Produção.
+                                URLs
+                                    URL Index
+                                        - HML - https://niboteste-hml.azurewebsites.net
+                                        - PRD - https://niboteste.azurewebsites.net
+                                    URL Healthcheck
+                                        - Healthcheck de HML - https://niboteste-hml.azurewebsites.net/TesteNibo/Healthcheck
+                                        - Healthcheck de PRD - https://niboteste.azurewebsites.net/TesteNibo/Healthcheck
+                                Recrusos Usados:
+                                    Azure DevOps:
+                                        - Build e Release
+                                    Azure Cloud
+                                        - Resouce Group chamado Nibo
+                                        - Web App for containers
+                                        - Azure registry
+OSB
+    se precisarem de acesso a todos os links pode me retornar com um email que adiono na hora.
 
-Aqui no Nibo, não enxergamos o contador como o um "mal necessário", mas sim como **cientista da riqueza** - a pessoa com os poderes de ajudar seus clientes a prosperarem e alcançarem o sucesso. 
-
-Traduzimos esse pensamento no nosso manifesto, que nunca deixamos de recitar: 
-> Todos os dias, 2000 empresas morrem no Brasil. Empresários precisam de ajuda. Bons contadores são a solução.
-
-Sendo assim, nosso papel é fornecer as ferramentas que aumentem a produtividade e efetividade do contador, de modo que ele tenha tempo para o que realmente importa: ser consultivo e entregar insights valiosos ao seu cliente.
-
-A equipe de Produto e Tecnologia do Nibo é composta por times multifuncionais, com autonomia na tomada de decisão. São as famosas **squads**. Não sabe o que é squad? Assista ao vídeo [Spotify Engineering Culture](https://www.youtube.com/watch?v=hQDblYvY9RY). 
+Pessoal, qualquer duvida estou a disposição para explicar melhor a ideia. inclusive sobre a parte de docker 
+que não foi possivel fazer.
+tel/WhatsApp:(31)98325-6463
 
 
-## O desafio
-
-O desafio consiste em criar um ambiente de produção no Azure pronto para receber requisições. Você deverá criar o ambiente e subir a aplicação de acordo com as instruções. Este desafio será usado como base para discutirmos  ferramentas, processos e cultura devOps. Não se trata de um teste objetivo, mas sim de um estudo de caso com o propósito de analisar os conhecimentos e experiências. 
-
-Você deverá criar um fork deste repositório e utilizar o projeto contido na pasta `SRC` para completar o desafio.
-
-### Requisitos:
-- [ ] Criar uma conta gratuita no [Azure](https://azure.microsoft.com/pt-br/free/)
-- [ ] Configurar o Azure para dois ambientes: Teste e Produção
-- [ ] Configurar pipeline para integração e deploy contínuo usando o Github Actions ou [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/)
-    - Uma das etapas obrigatórias deve rodar os testes unitários
-    - O deploy deve ser realizado automaticamente no ambiente de testes e no ambiente de produção, seguindo o [Github Flow](https://guides.github.com/introduction/flow/)
-    - O deploy deverá ser feito na sua conta Azure nos ambientes que você criou\
-- [ ] Criar um arquivo chamado `howto.md` explicando o que e como foi feito, além das URLs e instruções de como verificar o resultado
-
-### Atividades extras:
-- [ ] Configurar um endpoint na aplicação para servir como Healthcheck e configurar este endpoint no Azure para geração de estatísticas de disponibilidade.
-- [ ] Colocar a aplicação em um Docker container
 
 
-## Envio da solução
-Você deverá criar um fork deste repositório, incluir os scripts `.yml` e enviar para recruta.tech@nibo.com.br o link do seu fork. Lembre-se de não versionar qualquer chave de acesso. Se for necessário, envie essas chaves junto com o e-mail.
 
-Tenha capricho com o resultado final. Essa é a sua chance de entrar para o melhor time, na startup que mais cresce no Brasil.
 
-**NIBO - Desenvolvimento de alta performance para geeks inquietos**
-
-Boa sorte :D
 
