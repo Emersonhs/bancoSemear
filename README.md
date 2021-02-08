@@ -6,12 +6,15 @@
 Eu criei um pipeline de integração continua no Azure DevOps para fazer o deploy em um serviço no fargate e em um 
 bucket S3 na AWS.
 
-1 - Para fazer o teste foram criados 2 repositorios no GitHub:
-    1.1 - Repositorio da API - https://github.com/Emersonhs/bancoSemear.api
-            - esse repositorio tem uma aplicação .Net Core. essa aplicação tem uma rota de API "/bancosemear/healthcheck" 
+1 - Para fazer o teste foram criados 2 repositorios no GitHub: </p>
+    1.1 - Repositorio da API - https://github.com/Emersonhs/bancoSemear.api  </p>
+            - esse repositorio tem uma aplicação .Net Core. essa aplicação tem uma rota de API "/bancosemear/healthcheck"  </p>
                 que retora uma mensagem simples.
-    1.2 - Repositorio da pagina estatica - https://github.com/Emersonhs/bancosemear.staticpage
-            - Esse Repositorio tem um arquivo de uma pagina simples HTML.
+    1.2 - Repositorio da pagina estatica - https://github.com/Emersonhs/bancosemear.staticpage </p>
+            - Esse Repositorio tem um arquivo de uma pagina simples HTML. </p>
+
+
+
 
 Repositorio que fiz o Fork do projeto de teste
        - https://github.com/Emersonhs/DevOpsChallenge
