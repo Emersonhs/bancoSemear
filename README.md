@@ -35,7 +35,7 @@ bucket S3 na AWS.
     <img src="https://arquiteturaaws.s3.amazonaws.com/DiagramaBancoSemear.png">
 
    - A API depode ser acessada pelo link: http://deploysoftware.info/index.html
-        - tem uma rota para healthcheck
+        - tem uma rota para healthcheck.
    - A Aplicação statica pode ser acessada pelo link: http://deploysoftware.info/index.html/staticpage
 
     Caso seja necessario acessar o ambiente aws somente leitura com os seguintes dados:
@@ -43,6 +43,24 @@ bucket S3 na AWS.
         - ID Conta: 474397057832
         - Nome Usuario: SomenteLeitura
         - Senha: @AWS0011@
+
+    OBS: Não foram criados scriptis para automatização de infra estrutura.
+    
+    Ferramentas e telcnologias usadas
+    Desenvolvimento:
+        - APi .net Core 3.1 - documentação com Swagger
+        - pagina simples com HML
+        - Docker 
+    CI/CD
+        - Azure DevOps
+        - Criação imagem docker 
+    AWS
+        - Route 53
+        - Elastic Load balancer
+        - ECR
+        - Elastic conteiner service 
+            - fargate
+        - S3 
 </pre>
 
 
