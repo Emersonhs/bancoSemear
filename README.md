@@ -1,9 +1,9 @@
 <p align="center"><img src="https://www.bancosemear.com.br/assets/application/img/logo_banco_semear.png" width="150" /></p>
 <h1 align="center">Banco Semear teste DevOps</h1>
-
-ARQUITETURA
+<pre>
+                            <h2> ARQUITETURA</h2>
 <img src="https://arquiteturaaws.s3.amazonaws.com/DiagramaBancoSemear.png">
-
+</pre>
 Eu criei um pipeline de integração continua no Azure DevOps para fazer o deploy em um serviço no fargate e em um 
 bucket S3 na AWS.
 <pre>
